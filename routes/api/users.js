@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 
 // User Schema
@@ -29,21 +30,42 @@ router.post(
     // Destructuring - pull out name, email, password from req.body
     const { name, email, password } = req.body;
 
-    // Gives a promise back (this is why this function is async)
     try {
       // See if user exists
       let user = await User.findOne({ email });
 
       if (user) {
-        res.status(400).json({ errors: [{ msg: 'User already exists."' }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists.' }] });
       }
       // Get users gravatar
+      const avatar = gravatar.url(email, {
+        // s is size
+        s: '200',
+        // r is rating
+        r: 'pg',
+        // mm displays a default avatar if the user doesn't have their own avatar
+        d: 'mm',
+      });
 
+      // Create an instance of a user
+      user = new User({
+        name,
+        email,
+        avatar,
+        password,
+      });
       // Encrypt password using bcrypt
+      const salt = await bcrypt.genSalt(10);
+
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
 
       // Return jsonwebtoken
 
-      res.send('User route');
+      res.send('User registered.');
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
