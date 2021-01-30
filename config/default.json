@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://ryan123:ryan123@mernbookcluster.3rody.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://ryan123:ryan123@mernbookcluster.3rody.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mySecretToken"
 }
