@@ -74,7 +74,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtToken'),
+        config.get('jwtSecret'),
         // Set to 360000 for the sake of development
         // Change to 3600 (one hour) for production
         { expiresIn: 360000 },
