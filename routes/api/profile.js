@@ -83,7 +83,7 @@ router.post(
     if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
 
-    // Lok for profile by the user
+    // Look for profile by the user
     try {
       let profile = await Profile.findOne({ user: req.user.id });
 
@@ -101,7 +101,7 @@ router.post(
       // If no profile is found, create it
 
       profile = new Profile(profileFields);
-      await Profile.save();
+      await profile.save();
       res.json(profile);
     } catch (err) {
       console.error(err.message);
