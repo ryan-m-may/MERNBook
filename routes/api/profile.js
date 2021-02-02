@@ -166,6 +166,8 @@ router.delete('/', auth, async (req, res) => {
 // @route   PUT api/profile/experience
 // @desc    Add profile experience
 // @access  Private
+
+// TO DO -  ADD FUNCTIONALITY TO UPDATE PROFILE -------------------
 router.put(
   '/experience',
   [
@@ -214,5 +216,28 @@ router.put(
     }
   }
 );
+
+// @route   DELETE api/profile/experience/:exp_id
+// @desc    Delete profile experience
+// @access  Private
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+  try {
+    // Get profile of user
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    // Get index of experience to be removed
+    const removeIndex = profile.experience
+      .map((item) => item.id)
+      .indexOf(req.params.exp_id);
+    // Splice the experience at index
+    profile.experience.splice(removeIndex, 1);
+
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
