@@ -67,10 +67,10 @@ export const getProfiles = () => async (dispatch) => {
 // Get all GitHub repose
 export const getGithubRepos = (githubusername) => async (dispatch) => {
   // Clear recently visited profile from state so it doesn't flash on screen
-  dispatch({ type: CLEAR_PROFILE });
+  //dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get(`/api/profile/github${githubusername}`);
+    const res = await axios.get(`/api/profile/github/${githubusername}`);
 
     dispatch({
       type: GET_REPOS,
