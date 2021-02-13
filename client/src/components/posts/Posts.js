@@ -10,6 +10,7 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
+  posts = Array.from(posts);
 
   return loading ? (
     <Spinner />
