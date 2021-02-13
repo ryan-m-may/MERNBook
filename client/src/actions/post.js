@@ -110,7 +110,7 @@ export const getPost = (id) => async (dispatch) => {
     const res = await axios.get(`/api/posts/${id}`);
 
     dispatch({
-      type: GET_POSTS,
+      type: GET_POST,
       payload: res.data,
     });
   } catch (err) {
