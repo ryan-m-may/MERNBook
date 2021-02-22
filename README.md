@@ -7,6 +7,10 @@ known bugs to fix:
             2 - upon refresh of a page, app gets stuck on an eternal loading screen. Might be because state isn't being
             updated?
             discovered on 2/22/2021
+            
+            3 - if there is a profile with no user, developers page will not load because it gets stuck searching
+            for an ID that does not exist.
+            discovered on 2/22/2021
 
 fixed bugs:
 
