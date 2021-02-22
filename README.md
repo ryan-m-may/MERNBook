@@ -11,6 +11,7 @@ known bugs to fix:
 fixed bugs:
 
             1 - when loading a user's profile, the app crashes if the user has an education section filled out.
-            ProfileEducation.js was expecting an array called "experience" rather than an object called "education" as a prop.
+            ProfileEducation.js was expecting an array called "experience" rather than an object called "education" 
+            as a prop.
             discovered on 2.19/2021
             fixed on 2/22/2021
